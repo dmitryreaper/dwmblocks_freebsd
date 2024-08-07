@@ -1,0 +1,2 @@
+#!/bin/sh
+top -n | grep CPU | awk '{print $2}' | head -1  

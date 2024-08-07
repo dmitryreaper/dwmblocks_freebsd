@@ -1,0 +1,4 @@
+#!/bin/sh
+
+# Получаем температуру процессора в градусах Цельсия
+sysctl -a | grep temperature | head -1 | awk '{print $2 }'

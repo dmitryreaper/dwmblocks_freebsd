@@ -1,0 +1,5 @@
+#!/bin/sh
+AVAIL=$(df -H / | grep -w "ROOT" | awk '{ print $4 }' | awk -F'[A-Z]' '{print $1}')
+TOTAL=$(df -H / | grep -w "default" | awk '{ print $2 }' | awk -F'[A-Z]' '{print $1}')
+
+	printf "\%sGB " "${AVAIL} / ${TOTAL}"

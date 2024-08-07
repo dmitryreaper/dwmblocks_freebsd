@@ -1,0 +1,13 @@
+#! /bin/sh 
+RAM_TOP=$(top -n | grep -w "Mem" | grep -o '\b[0-9MK]*\b' | tr '\n' ' ' | awk '{print $1}')
+	USEDRAM=0
+	for value in $RAM_TOP; do
+		temp=$( echo "${value}" | grep -o '[K]')
+		if [ -z "${temp}" ]; then
+				num=$( echo "${value}" | grep -o '[0-9]' | tr -d '\n' )
+				USEDRAM=$(( $USEDRAM + $num ))
+		fi
+	done
+	TOTALRAM=$(dmesg | grep -E '^avail memory' | cut -d'(' -f2 | cut -d')' -f1 | awk '{ print $1 }' | sed -n 1p)
+	PRCNTUSED=$(awk -v u=$USEDRAM -v t="${TOTALRAM}" 'BEGIN{print 100 * u / t}' | awk -F. '{ print $1"."substr($2,1,2) }')
+	printf "%s\\n" " ${RAM_TOP}% "
