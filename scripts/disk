@@ -1,5 +1,0 @@
-#!/bin/sh
-freespace="$(df -h | awk '/dev/ada0 {print $3 "/" $2}' | grep ..G/...G)"
-echo -e "$freespace"
-
-

@@ -1,6 +1,0 @@
-#!/bin/sh 
-GETVOL="$(mixer | grep vol | awk '{ print $3 }' | grep -o '^[^:]*')"
-	
-#this is for headphones icon: \ue04d
-#printf "%F{COLOR_ICONS_FG}\ue05d "
-printf "%s\\n" "${GETVOL}% |"
