@@ -1,0 +1,5 @@
+#!/bin/sh
+GETVOL="$(mixer | grep vol | awk '{ print $3 }' | grep -o '^[^:]*')"
+GETVOL_PERCENT=$(echo "$GETVOL * 100" | bc)  # Convert 0.10 to 10
+#printf "%F{COLOR_ICONS_FG}\ue05d "
+printf "%.0f%%\n" "${GETVOL_PERCENT}"  # Add % symbol

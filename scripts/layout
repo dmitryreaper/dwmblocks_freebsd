@@ -1,0 +1,5 @@
+#!/bin/bash
+
+language=$(setxkbmap -query | grep layout | awk '{print $2}')
+
+echo " $language"
